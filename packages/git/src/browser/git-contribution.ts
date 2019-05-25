@@ -148,7 +148,8 @@ export namespace GIT_COMMANDS {
     export const OPEN_CHANGES: Command = {
         id: 'git.open.changes',
         category: 'Git',
-        label: 'Open Changes'
+        label: 'Open Changes',
+        iconClass: 'theia-open-change-icon'
     };
     export const SYNC = {
         id: 'git.sync',
@@ -740,7 +741,6 @@ export class GitContribution implements
         registry.registerItem({
             id: GIT_COMMANDS.OPEN_CHANGES.id,
             command: GIT_COMMANDS.OPEN_CHANGES.id,
-            text: '$(files-o)',
             tooltip: GIT_COMMANDS.OPEN_CHANGES.label
         });
     }
