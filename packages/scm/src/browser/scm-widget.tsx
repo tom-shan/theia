@@ -87,10 +87,6 @@ export class ScmWidget extends ScmNavigableListWidget<ScmResource> implements St
     constructor() {
         super();
         this.id = 'theia-scmContainer';
-        this.title.label = ScmWidget.LABEL;
-        this.title.caption = ScmWidget.LABEL;
-        this.title.closable = true;
-        this.title.iconClass = 'scm-tab-icon';
         this.addClass('theia-scm');
         this.scrollContainer = ScmWidget.Styles.GROUPS_CONTAINER;
 
@@ -122,9 +118,19 @@ export class ScmWidget extends ScmNavigableListWidget<ScmResource> implements St
                 this.shell.leftPanelHandler.refresh();
                 this.update();
             } else {
+                this.title.label = ScmWidget.LABEL;
                 this.selectedRepoUri = undefined;
             }
         });
+    }
+
+    protected onBeforeAttach(msg: Message): void {
+        const repository = this.scmService.selectedRepository;
+        this.title.iconClass = 'scm-tab-icon';
+        this.title.label = ScmWidget.LABEL + (repository ? ': ' + repository.provider.contextValue : '');
+        this.title.caption = ScmWidget.LABEL;
+        this.title.closable = true;
+        super.onBeforeAttach(msg);
     }
 
     get onUpdate(): CoreEvent<void> {
