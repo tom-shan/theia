@@ -63,7 +63,7 @@ export class ScmContribution extends AbstractViewContribution<ScmWidget> impleme
     onStart(): void {
         const CHANGE_REPOSITORY = {
             id: 'scm.change.repository',
-            label: 'Scm: Change Repository...'
+            label: 'SCM: Change Repository...'
         };
 
         const refresh = (commands: ScmCommand[]) => {
