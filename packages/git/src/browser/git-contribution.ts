@@ -432,7 +432,7 @@ export class GitContribution implements
         const provider = new ScmProviderImpl('Git', uri.substring(uri.lastIndexOf('/') + 1), uri, amendSupport);
         this.scmProviders.push(provider);
         const repo = this.scmService.registerScmProvider(provider, disposableCollection);
-        repo.input.placeholder = 'Commit Message';
+        repo.input.placeholder = 'Commit message';
         repo.input.validateInput = async input => {
             const validate = await this.commitMessageValidator.validate(input);
             if (validate) {
