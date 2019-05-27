@@ -137,7 +137,8 @@ export namespace GIT_COMMANDS {
     export const OPEN_FILE: Command = {
         id: 'git.open.file',
         category: 'Git',
-        label: 'Open File'
+        label: 'Open File',
+        iconClass: 'theia-open-file-icon'
     };
     export const OPEN_CHANGED_FILE: Command = {
         id: 'git.open.changed.file',
@@ -729,7 +730,6 @@ export class GitContribution implements
         registry.registerItem({
             id: GIT_COMMANDS.OPEN_FILE.id,
             command: GIT_COMMANDS.OPEN_FILE.id,
-            text: '$(file-o)',
             tooltip: GIT_COMMANDS.OPEN_FILE.label
         });
         registry.registerItem({
