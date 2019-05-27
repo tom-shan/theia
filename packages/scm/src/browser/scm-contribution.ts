@@ -100,7 +100,7 @@ export class ScmContribution extends AbstractViewContribution<ScmWidget> impleme
             if (repository) {
                 const path = this.labelProvider.getName(new URI(repository.provider.rootUri));
                 this.statusBar.setElement(CHANGE_REPOSITORY.id, {
-                    text: `$(database) ${path}: ${repository.provider.contextValue}`,
+                    text: `$(database) ${path}`,
                     tooltip: path.toString(),
                     command: CHANGE_REPOSITORY.id,
                     alignment: StatusBarAlignment.LEFT,
