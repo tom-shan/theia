@@ -121,7 +121,7 @@ export namespace GIT_COMMANDS {
         id: 'git-commit-add-sign-off',
         label: 'Add Signed-off-by',
         iconClass: 'fa fa-pencil-square-o',
-        category: 'navigation'
+        category: 'Git'
     };
     export const COMMIT_AMEND = {
         id: 'git.commit.amend'
@@ -161,32 +161,38 @@ export namespace GIT_COMMANDS {
     };
     export const STAGE = {
         id: 'git.stage',
+        category: 'Git',
         label: 'Stage Changes',
         iconClass: 'fa fa-plus'
     };
     export const STAGE_ALL = {
         id: 'git.stage.all',
+        category: 'Git',
         label: 'Stage All Changes',
         iconClass: 'fa fa-plus',
     };
     export const UNSTAGE = {
         id: 'git.unstage',
         iconClass: 'fa fa-minus',
+        category: 'Git',
         label: 'Unstage Changes'
     };
     export const UNSTAGE_ALL = {
         id: 'git.unstage.all',
         iconClass: 'fa fa-minus',
+        category: 'Git',
         label: 'Unstage All',
     };
     export const DISCARD = {
         id: 'git.discard',
         iconClass: 'fa fa-undo',
+        category: 'Git',
         label: 'Discard Changes'
     };
     export const DISCARD_ALL = {
         id: 'git.discard.all',
         iconClass: 'fa fa-undo',
+        category: 'Git',
         label: 'Discard All Changes',
     };
     export const STASH = {
@@ -223,7 +229,7 @@ export namespace GIT_COMMANDS {
         id: 'git-refresh',
         label: 'Refresh',
         iconClass: 'fa fa-refresh',
-        category: 'navigation'
+        category: 'Git'
     };
 }
 
