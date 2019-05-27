@@ -46,12 +46,13 @@ export class ScmContribution extends AbstractViewContribution<ScmWidget> impleme
     constructor() {
         super({
             widgetId: SCM_WIDGET_FACTORY_ID,
-            widgetName: 'Scm',
+            widgetName: 'SCM',
             defaultWidgetOptions: {
                 area: 'left',
                 rank: 300
             },
-            toggleCommandId: 'scmView:toggle'
+            toggleCommandId: 'scmView:toggle',
+            toggleKeybinding: 'ctrlcmd+shift+g'
         });
     }
 
