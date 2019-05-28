@@ -115,17 +115,17 @@ export class ScmWidget extends ScmNavigableListWidget<ScmResource> implements St
             if (repository) {
                 this.selectedRepoUri = repository.provider.rootUri;
                 this.title.label = ScmWidget.LABEL + ': ' + repository.provider.contextValue;
-                const area = this.shell.getAreaFor(this);
-                if (area === 'left') {
-                    this.shell.leftPanelHandler.refresh();
-                } else if (area === 'right') {
-                    this.shell.rightPanelHandler.refresh();
-                }
-                this.update();
             } else {
                 this.title.label = ScmWidget.LABEL;
                 this.selectedRepoUri = undefined;
             }
+            const area = this.shell.getAreaFor(this);
+            if (area === 'left') {
+                this.shell.leftPanelHandler.refresh();
+            } else if (area === 'right') {
+                this.shell.rightPanelHandler.refresh();
+            }
+            this.update();
         });
     }
 
