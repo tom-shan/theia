@@ -66,6 +66,7 @@ cache:
 # end_cache_directories
   - packages/java-debug/download
   - packages/debug-nodejs/download
+  - /tmp/vscode-ripgrep-cache-1.2.4
 branches:
   only:
   - master
@@ -97,6 +98,8 @@ before_install:
   - export PATH=$HOME/.yarn/bin:$PATH
 install:
   - THEIA_SKIP_NPM_PREPARE=1 yarn install
+  - ls -l /tmp/vscode-ripgrep-cache-1.2.4
+  - ls -l /tmp
   - npx electron-h264-test
   - yarn prepare
   - scripts/check_git_status.sh
