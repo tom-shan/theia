@@ -42,9 +42,7 @@ export class PreferencesDecorator implements TreeDecorator {
     }
 
     fireDidChangeDecorations(preferences: { [id: string]: PreferenceDataProperty }[]): void {
-        if (!this.preferences) {
-            this.preferences = preferences;
-        }
+        this.preferences = preferences;
         this.preferencesDecorations = new Map(preferences.map(m => {
             const preferenceName = Object.keys(m)[0];
             const preferenceValue = m[preferenceName];

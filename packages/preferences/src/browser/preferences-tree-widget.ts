@@ -443,7 +443,7 @@ export class PreferencesTreeWidget extends TreeWidget {
 
     private activeFolderUri: string | undefined;
     private preferencesGroupNames = new Set<string>();
-    private readonly properties: { [name: string]: PreferenceDataProperty };
+    private properties: { [name: string]: PreferenceDataProperty };
     private readonly onPreferenceSelectedEmitter: Emitter<{ [key: string]: string }>;
     readonly onPreferenceSelected: Event<{ [key: string]: string }>;
 
@@ -488,6 +488,18 @@ export class PreferencesTreeWidget extends TreeWidget {
 
     protected onAfterAttach(msg: Message): void {
         this.initializeModel();
+        this.preferenceSchemaProvider.onDidPreferenceSchemaChanged(() => {
+            for (const property in this.properties) {
+                if (property) {
+                    // Compute preference group name and accept those which have the proper format.
+                    const group: string = property.substring(0, property.indexOf('.'));
+                    if (property.split('.').length > 1) {
+                        this.preferencesGroupNames.add(group);
+                    }
+                }
+            }
+            this.initializeModel();
+        });
         super.onAfterAttach(msg);
     }
 
