@@ -22,6 +22,7 @@ import { Disposable, DisposableCollection } from '@theia/core/lib/common/disposa
 import { ApplicationShell, NavigatableWidget } from '@theia/core/lib/browser';
 import { VariableContribution, VariableRegistry, Variable } from '@theia/variable-resolver/lib/browser';
 import { WorkspaceService } from './workspace-service';
+import { SelectionService } from '@theia/core/lib/common/selection-service';
 
 @injectable()
 export class WorkspaceVariableContribution implements VariableContribution {
@@ -35,11 +36,26 @@ export class WorkspaceVariableContribution implements VariableContribution {
 
     protected currentWidget: NavigatableWidget | undefined;
 
+    protected resourceUri: URI | undefined;
+
+    @inject(SelectionService)
+    protected readonly selectionService: SelectionService;
+
     @postConstruct()
     protected init(): void {
-        this.updateCurrentWidget();
-        this.shell.currentChanged.connect(() => this.updateCurrentWidget());
+        this.updateResourceUri();
+        this.selectionService.onSelectionChanged(() => this.updateResourceUri());
     }
+
+    protected updateResourceUri(): void {
+        const selection: Object | undefined = this.selectionService.selection;
+        if (selection && 'uri' in selection) {
+            this.resourceUri = (selection as { uri: URI }).uri;
+        } else if (selection && Array.isArray(selection) && 'uri' in selection[selection.length - 1]) {
+            this.resourceUri = selection[selection.length - 1].uri;
+        }
+    }
+
     protected updateCurrentWidget(): void {
         const { currentWidget } = this.shell;
         if (NavigatableWidget.is(currentWidget)) {
@@ -179,7 +195,7 @@ export class WorkspaceVariableContribution implements VariableContribution {
 
     getResourceUri(): URI | undefined {
         // TODO replace with ResourceContextKey.get?
-        return this.currentWidget && this.currentWidget.getResourceUri();
+        return this.resourceUri;
     }
 
     getWorkspaceRelativePath(uri: URI, context?: URI): string | undefined {
