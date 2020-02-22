@@ -45,4 +45,9 @@ export class FrontendApplicationConfigProvider {
         return globalObject[key];
     }
 
+    static isSet(): boolean {
+        const config = FrontendApplicationConfigProvider.doGet();
+        return config !== undefined;
+    }
+
 }

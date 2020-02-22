@@ -17,6 +17,12 @@
 import { interfaces } from 'inversify';
 import { createPreferenceProxy, PreferenceProxy, PreferenceService, PreferenceContribution, PreferenceSchema } from './preferences';
 import { FrontendApplicationConfigProvider } from './frontend-application-config-provider';
+import { ApplicationPackage } from '@theia/application-package';
+
+if (!FrontendApplicationConfigProvider.isSet()) {
+    const config = ApplicationPackage.props.frontend.config;
+    FrontendApplicationConfigProvider.set(config)
+}
 
 export const corePreferenceSchema: PreferenceSchema = {
     'type': 'object',
